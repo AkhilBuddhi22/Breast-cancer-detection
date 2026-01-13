@@ -2,9 +2,12 @@ from flask import Flask, render_template, request
 import numpy as np
 import pandas as pd
 import pickle
+from pathlib import Path
 
-# loading model
-model = pickle.load(open('models/model.pkl', 'rb'))
+# loading model from repo-relative path
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / 'models' / 'model.pkl'
+model = pickle.load(open(MODEL_PATH, 'rb'))
 
 # flask app
 app = Flask(__name__)
